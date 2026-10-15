@@ -48,7 +48,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
   onPaymentSuccess,
 }) => {
   const [paymentMethod, setPaymentMethod] = useState<'upi' | 'card' | 'netbanking' | 'wallet'>('upi');
-  const [couponInput, setCouponInput] = useState('REDBUS50');
+  const [couponInput, setCouponInput] = useState('Busly50');
   const [appliedCoupon, setAppliedCoupon] = useState<typeof COUPONS[0] | null>(COUPONS[0]);
   const [couponError, setCouponError] = useState<string | null>(null);
 
@@ -113,7 +113,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
       setAppliedCoupon(found);
       setCouponError(null);
     } else {
-      setCouponError('Invalid coupon code. Try REDBUS50 or FIRSTBUS');
+      setCouponError('Invalid coupon code. Try Busly50 or FIRSTBUS');
     }
   };
 
@@ -207,7 +207,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
             </div>
             <div>
               <h2 className="font-extrabold text-base text-slate-900 flex items-center gap-2">
-                redBus Pay 100% Secure Checkout
+                Busly Pay 100% Secure Checkout
                 <span className="text-[10px] font-mono bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full border border-emerald-200">
                   256-BIT SSL ENCRYPTED
                 </span>
@@ -335,7 +335,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
                   type="text"
                   value={couponInput}
                   onChange={(e) => setCouponInput(e.target.value)}
-                  placeholder="Enter REDBUS50 or FIRSTBUS"
+                  placeholder="Enter Busly50 or FIRSTBUS"
                   className="flex-1 uppercase font-mono text-xs font-bold px-3 py-2 bg-white rounded-lg border border-amber-300 focus:outline-hidden"
                 />
                 <button
@@ -548,7 +548,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
                         className="text-[#d84e55] focus:ring-[#d84e55] rounded-sm"
                       />
                       <div>
-                        <span className="text-xs font-bold text-slate-900 block">redBus Wallet Cash</span>
+                        <span className="text-xs font-bold text-slate-900 block">Busly Wallet Cash</span>
                         <span className="text-[11px] text-slate-400">Available Balance: ₹500.00</span>
                       </div>
                     </div>
@@ -570,7 +570,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
               </div>
               {useWalletBalance && (
                 <div className="flex justify-between text-emerald-700 font-semibold">
-                  <span>redBus Wallet Deduction:</span>
+                  <span>Busly Wallet Deduction:</span>
                   <span className="font-mono">-₹{walletDeduction}</span>
                 </div>
               )}
@@ -607,7 +607,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
             <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 flex items-center justify-between">
               <div>
                 <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
-                  Merchant: REDBUS INDIA PVT LTD
+                  Merchant: Busly INDIA PVT LTD
                 </span>
                 <span className="font-black text-slate-900 text-lg">Amount: ₹{finalPayable}</span>
               </div>

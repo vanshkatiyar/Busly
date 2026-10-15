@@ -17,7 +17,7 @@ export const PrimoSection: React.FC<PrimoSectionProps> = ({ onExplorePrimo }) =>
                 ★
               </span>
               <span className="text-sm font-black uppercase tracking-widest text-amber-400">
-                Primo by redBus
+                Primo by Busly
               </span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-black text-white">

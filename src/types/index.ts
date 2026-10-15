@@ -91,6 +91,14 @@ export interface FlightTrip {
   };
 }
 
+export interface HotelRoomCombo {
+  name: string;
+  mealPlan: string;
+  price: number;
+  taxesAndFees: number;
+  isPopular?: boolean;
+}
+
 export interface HotelItem {
   id: string;
   name: string;
@@ -106,6 +114,20 @@ export interface HotelItem {
   checkOutTime: string;
   imageTheme: string;
   roomStatus?: 'Ready' | 'Cleaning' | 'Reserved';
+  images?: string[];
+  category?: 'hotel' | 'hostel' | 'homestay';
+  brand?: 'OYO' | 'FabHotels' | 'Treebo' | 'Bloom' | 'goSTOPS' | 'The Hosteller';
+  distanceLandmark?: string;
+  isFlashDeal?: boolean;
+  flashDiscountPercent?: number;
+  starRating?: number;
+  coupleFriendly?: boolean;
+  freeBreakfast?: boolean;
+  freeCancellation?: boolean;
+  isGuestFavourite?: boolean;
+  recentBookings?: number;
+  taxAndFees?: number;
+  roomCombos?: HotelRoomCombo[];
 }
 
 export interface Passenger {

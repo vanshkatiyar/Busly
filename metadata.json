@@ -1,6 +1,8 @@
 {
-  "name": "redBus Clone - Bus, Train, Flight & Hotel Booking with Live Tracking",
+  "name": "Busly Clone - Bus, Train, Flight & Hotel Booking with Live Tracking",
   "description": "India's No. 1 online travel booking platform clone with real-time GPS tracking for buses, trains, flights, and hotels, interactive seat selection, and secure payment gateway demo.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

@@ -126,7 +126,7 @@ export const RestStopModal: React.FC<RestStopModalProps> = ({
             <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
             <div>
               <span className="font-bold block text-emerald-950">
-                redBus Certified Female-Friendly & Hygienic Rest Stop
+                Busly Certified Female-Friendly & Hygienic Rest Stop
               </span>
               <p className="text-emerald-700 mt-0.5 leading-relaxed">
                 Separated clean female restrooms, bright LED outdoor illumination, 24x7 security, and hot sanitized dining counters.

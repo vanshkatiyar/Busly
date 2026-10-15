@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { TravelMode, BusTrip, TrainTrip, FlightTrip, HotelItem, BookingRecord, RouteStop, RestStop } from './types';
+import { TravelMode, BusTrip, TrainTrip, FlightTrip, HotelItem, HotelRoomCombo, BookingRecord, RouteStop, RestStop } from './types';
 import { MOCK_BUS_TRIPS, MOCK_TRAIN_TRIPS, MOCK_FLIGHT_TRIPS, MOCK_HOTEL_ITEMS, MOCK_REST_STOPS } from './data/mockData';
 import { Header } from './components/Header';
 import { HeroSearch } from './components/HeroSearch';
@@ -59,7 +59,7 @@ const INITIAL_BOOKINGS: BookingRecord[] = [
       discount: 150,
       totalAmount: 1738,
     },
-    couponCode: 'REDBUS50',
+    couponCode: 'Busly50',
     paymentMethod: 'UPI (GPAY)',
     bookedAt: 'Yesterday, 04:30 PM',
     status: 'CONFIRMED',
@@ -83,7 +83,7 @@ export default function App() {
 
   // Stored Bookings
   const [bookings, setBookings] = useState<BookingRecord[]>(() => {
-    const saved = localStorage.getItem('redbus_bookings');
+    const saved = localStorage.getItem('Busly_bookings');
     if (saved) {
       try {
         return JSON.parse(saved);
@@ -117,7 +117,7 @@ export default function App() {
 
   // Persist bookings to localStorage
   useEffect(() => {
-    localStorage.setItem('redbus_bookings', JSON.stringify(bookings));
+    localStorage.setItem('Busly_bookings', JSON.stringify(bookings));
   }, [bookings]);
 
   // Search handler from Hero
@@ -181,17 +181,28 @@ export default function App() {
     });
   };
 
+  const [wishlistIds, setWishlistIds] = useState<string[]>(['htl-hostelife', 'htl-bloom']);
+
+  const toggleWishlist = (hotelId: string) => {
+    setWishlistIds((prev) =>
+      prev.includes(hotelId) ? prev.filter((id) => id !== hotelId) : [...prev, hotelId]
+    );
+  };
+
   // Hotel booking flow
-  const handleBookHotel = (hotel: HotelItem) => {
+  const handleBookHotel = (hotel: HotelItem, combo?: HotelRoomCombo) => {
+    const finalAmount = combo ? combo.price + combo.taxesAndFees : hotel.pricePerNight + (hotel.taxAndFees || 44);
+    const roomPlan = combo ? `${combo.name} · ${combo.mealPlan}` : `${hotel.roomType} · Check-in 12:00 PM`;
+
     setActivePaymentConfig({
-      amount: hotel.pricePerNight,
+      amount: finalAmount,
       itemTitle: hotel.name,
-      subTitle: `${hotel.roomType} · Check-in 12:00 PM · Free Breakfast`,
+      subTitle: `${roomPlan} · Guaranteed Check-in`,
       from: `${hotel.area}, ${hotel.city}`,
       to: '1 Night Stay',
       travelDate,
       mode: 'hotel',
-      selectedSeats: ['Room 408'],
+      selectedSeats: ['Room 408 (Verified Stay)'],
     });
   };
 
@@ -239,14 +250,19 @@ export default function App() {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }}
         bookingCount={bookings.filter((b) => b.status === 'CONFIRMED').length}
+        wishlistCount={wishlistIds.length}
+        onOpenWishlist={() => {
+          setActiveMode('hotel');
+          window.scrollTo({ top: 750, behavior: 'smooth' });
+        }}
         onOpenMyBookings={() => setIsMyBookingsOpen(true)}
         onOpenHelp={() => setIsHelpOpen(true)}
       />
 
       {/* Main Container */}
       <main className="flex-1">
-        {/* Hero Search is shown on Bus, Train, Flight & Hotel modes */}
-        {activeMode !== 'tracking' && (
+        {/* Hero Search is shown on Bus, Train & Flight modes (Hotels has its own rich dedicated Hero) */}
+        {activeMode !== 'tracking' && activeMode !== 'hotel' && (
           <HeroSearch
             activeMode={activeMode}
             onSearch={handleSearch}
@@ -299,14 +315,13 @@ export default function App() {
         )}
 
         {activeMode === 'hotel' && (
-          <>
-            <HotelSearchResults
-              city={fromCity}
-              onBookHotel={handleBookHotel}
-              onTrackHotel={() => setActiveMode('tracking')}
-            />
-            <OffersSection />
-          </>
+          <HotelSearchResults
+            city={fromCity}
+            onBookHotel={handleBookHotel}
+            onTrackHotel={() => setActiveMode('tracking')}
+            wishlistIds={wishlistIds}
+            onToggleWishlist={toggleWishlist}
+          />
         )}
 
         {activeMode === 'tracking' && (

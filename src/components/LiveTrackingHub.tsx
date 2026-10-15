@@ -90,7 +90,7 @@ export const LiveTrackingHub: React.FC<LiveTrackingHubProps> = ({
   };
 
   const handleEmergencySOS = () => {
-    showToast('Emergency SOS alert dispatched to redBus Safety Command & Local Highway Patrol.');
+    showToast('Emergency SOS alert dispatched to Busly Safety Command & Local Highway Patrol.');
   };
 
   const handleConciergeRequest = (requestName: string) => {
@@ -118,7 +118,7 @@ export const LiveTrackingHub: React.FC<LiveTrackingHubProps> = ({
             <div className="flex items-center gap-2">
               <span className="w-3 h-3 rounded-full bg-emerald-500 animate-ping" />
               <h1 className="text-xl sm:text-2xl font-black text-slate-900">
-                redBus Live Travel GPS Tracking System
+                Busly Live Travel GPS Tracking System
               </h1>
             </div>
             <p className="text-xs text-slate-500 mt-1">

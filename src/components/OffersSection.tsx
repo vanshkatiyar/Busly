@@ -18,7 +18,7 @@ export const OffersSection: React.FC = () => {
           <span className="text-xs font-bold text-[#d84e55] uppercase tracking-wider block mb-1">
             Exclusive Deals & Discounts
           </span>
-          <h2 className="text-2xl font-black text-slate-900">Trending redBus Travel Offers</h2>
+          <h2 className="text-2xl font-black text-slate-900">Trending Busly Travel Offers</h2>
         </div>
       </div>
 

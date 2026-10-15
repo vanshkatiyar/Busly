@@ -32,10 +32,10 @@ export const Footer: React.FC = () => {
           </div>
 
           <div>
-            <h4 className="text-white font-bold text-sm mb-3">redBus Ecosystem</h4>
+            <h4 className="text-white font-bold text-sm mb-3">Busly Ecosystem</h4>
             <ul className="space-y-1.5 text-[11px]">
               <li><a href="#" className="hover:text-white transition-colors">redRail IRCTC Trains</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">redBus Flights</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Busly Flights</a></li>
               <li><a href="#" className="hover:text-white transition-colors">redStays Verified Hotels</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Live GPS Tracking Portal</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Primo Luxury Guarantee</a></li>
@@ -48,12 +48,12 @@ export const Footer: React.FC = () => {
               <div className="w-8 h-8 rounded-lg bg-[#d84e55] flex items-center justify-center text-white font-bold">
                 <Bus className="w-4 h-4" />
               </div>
-              <span className="text-lg font-black text-white">
-                red<span className="text-[#d84e55]">Bus</span>
+              <span className="text-lg font-black text-[#d84e55]">
+                Bus<span className="text-white">ly</span>
               </span>
             </div>
             <p className="text-[11px] leading-relaxed text-slate-400 mb-3">
-              redBus is the world's largest online bus ticket booking platform trusted by over 36 million customers globally.
+              Busly is the world's largest online bus ticket booking platform trusted by over 36 million customers globally.
             </p>
             <div className="flex items-center gap-2 text-[10px] text-emerald-400 font-semibold bg-slate-900 p-2 rounded-lg border border-slate-800">
               <ShieldCheck className="w-4 h-4 shrink-0 text-emerald-400" />
@@ -65,7 +65,7 @@ export const Footer: React.FC = () => {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
           <div>
-            © {new Date().getFullYear()} redBus India Pvt. Ltd. All rights reserved.
+            © {new Date().getFullYear()} Busly India Pvt. Ltd. All rights reserved.
           </div>
           <div className="flex items-center gap-4">
             <a href="#" className="hover:text-slate-300">Privacy Policy</a>

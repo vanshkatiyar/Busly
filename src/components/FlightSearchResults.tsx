@@ -25,7 +25,7 @@ export const FlightSearchResults: React.FC<FlightSearchResultsProps> = ({
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <span className="text-xs font-bold uppercase tracking-wider text-sky-300 block mb-1">
-              redBus Flights Portal
+              Busly Flights Portal
             </span>
             <h2 className="text-xl sm:text-2xl font-black text-white">
               Lowest Airfare Guarantee on Domestic & International Flights

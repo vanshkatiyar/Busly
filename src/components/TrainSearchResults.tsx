@@ -63,7 +63,7 @@ export const TrainSearchResults: React.FC<TrainSearchResultsProps> = ({
                 <Train className="w-5 h-5 text-amber-400" />
               </div>
               <span className="text-xl font-black tracking-tight text-white">
-                redRail <span className="text-xs font-semibold text-blue-200">by redBus</span>
+                redRail <span className="text-xs font-semibold text-blue-200">by Busly</span>
               </span>
               <span className="text-[10px] bg-amber-400/20 text-amber-300 font-bold px-2 py-0.5 rounded-full border border-amber-400/30">
                 OFFICIAL IRCTC AUTHORIZED PARTNER

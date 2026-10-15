@@ -32,7 +32,7 @@ export const ETicketModal: React.FC<ETicketModalProps> = ({
 
   const handleShare = () => {
     navigator.clipboard?.writeText(
-      `redBus Confirmed Booking:\nPNR: ${booking.pnr}\nRoute: ${booking.from} -> ${booking.to}\nDate: ${booking.travelDate}\nSeats: ${booking.selectedSeats?.join(', ') || 'Confirmed'}`
+      `Busly Confirmed Booking:\nPNR: ${booking.pnr}\nRoute: ${booking.from} -> ${booking.to}\nDate: ${booking.travelDate}\nSeats: ${booking.selectedSeats?.join(', ') || 'Confirmed'}`
     );
     alert('Ticket details copied to clipboard!');
   };
@@ -83,7 +83,7 @@ export const ETicketModal: React.FC<ETicketModalProps> = ({
             <div className="flex items-start justify-between gap-4 pt-1 pb-4 border-b border-slate-100">
               <div>
                 <span className="text-2xl font-black text-[#d84e55] tracking-tight">
-                  red<span className="text-slate-900">Bus</span>
+                  Bus<span className="text-black">ly</span>
                 </span>
                 <span className="block text-[11px] font-bold text-emerald-600 flex items-center gap-1 mt-0.5">
                   <CheckCircle2 className="w-3.5 h-3.5" /> BOOKING CONFIRMED

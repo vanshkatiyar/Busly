@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bus, Train, Plane, Building2, Navigation, Ticket, LifeBuoy } from 'lucide-react';
+import { Bus, Train, Bed, Building2, Navigation, Ticket, LifeBuoy, Heart, User, Plane } from 'lucide-react';
 import { TravelMode } from '../types';
 
 interface HeaderProps {
@@ -8,6 +8,8 @@ interface HeaderProps {
   bookingCount: number;
   onOpenMyBookings: () => void;
   onOpenHelp: () => void;
+  wishlistCount?: number;
+  onOpenWishlist?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -16,22 +18,25 @@ export const Header: React.FC<HeaderProps> = ({
   bookingCount,
   onOpenMyBookings,
   onOpenHelp,
+  wishlistCount = 0,
+  onOpenWishlist,
 }) => {
   return (
-    <header className="sticky top-0 z-40 bg-white border-b border-slate-200/80 shadow-xs backdrop-blur-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-8">
-        {/* Zone 1: Brand Wordmark */}
+    <header className="sticky top-0 z-40 bg-white border-b border-slate-200/90 shadow-2xs backdrop-blur-md">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-6">
+        
+        {/* Zone 1: Brand Wordmark (Busly: Bus in red, ly in black) */}
         <div className="flex items-center gap-3 shrink-0">
           <button
             onClick={() => onSelectMode('bus')}
-            className="flex items-center gap-2 group cursor-pointer focus:outline-hidden"
+            className="flex items-center gap-2.5 group cursor-pointer focus:outline-hidden"
           >
-            <div className="w-10 h-10 rounded-xl bg-[#d84e55] flex items-center justify-center text-white shadow-md shadow-[#d84e55]/20 group-hover:scale-105 transition-transform duration-200">
+            <div className="w-11 h-11 rounded-2xl bg-[#d84e55] flex items-center justify-center text-white shadow-md shadow-[#d84e55]/25 group-hover:scale-105 transition-transform duration-200">
               <Bus className="w-6 h-6 stroke-[2.2]" />
             </div>
             <div className="text-left">
               <span className="text-2xl font-black tracking-tight text-[#d84e55]">
-                red<span className="text-slate-900">Bus</span>
+                Bus<span className="text-black">ly</span>
               </span>
               <span className="block text-[10px] font-semibold text-slate-400 tracking-wider uppercase leading-none">
                 India's No. 1
@@ -40,92 +45,121 @@ export const Header: React.FC<HeaderProps> = ({
           </button>
         </div>
 
-        {/* Zone 2: Navigation Links */}
-        <nav className="hidden md:flex items-center gap-1 lg:gap-2">
+        {/* Zone 2: Navigation Links (Matching Screenshot 1 & 2 Tabs) */}
+        <nav className="hidden md:flex items-center gap-1 lg:gap-3 h-full">
+          
+          {/* Bus Tickets */}
           <button
             onClick={() => onSelectMode('bus')}
-            className={`flex items-center gap-2 px-3.5 py-2 text-sm font-semibold rounded-lg transition-all duration-150 whitespace-nowrap shrink-0 cursor-pointer ${
+            className={`flex flex-col items-center justify-center h-full px-4 text-xs font-bold transition-all duration-150 cursor-pointer border-b-3 ${
               activeMode === 'bus'
-                ? 'bg-[#d84e55] text-white shadow-sm'
-                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                ? 'border-[#d84e55] text-[#d84e55]'
+                : 'border-transparent text-slate-600 hover:text-slate-900'
             }`}
           >
-            <Bus className="w-4 h-4" />
-            <span>Bus Tickets</span>
+            <Bus className="w-5 h-5 mb-1" />
+            <span>Bus tickets</span>
           </button>
 
+          {/* Train Tickets */}
           <button
             onClick={() => onSelectMode('train')}
-            className={`flex items-center gap-2 px-3.5 py-2 text-sm font-semibold rounded-lg transition-all duration-150 whitespace-nowrap shrink-0 cursor-pointer ${
+            className={`flex flex-col items-center justify-center h-full px-4 text-xs font-bold transition-all duration-150 cursor-pointer border-b-3 ${
               activeMode === 'train'
-                ? 'bg-[#d84e55] text-white shadow-sm'
-                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                ? 'border-[#d84e55] text-[#d84e55]'
+                : 'border-transparent text-slate-600 hover:text-slate-900'
             }`}
           >
-            <Train className="w-4 h-4" />
-            <span>redRail (Trains)</span>
+            <Train className="w-5 h-5 mb-1" />
+            <span>Train tickets</span>
           </button>
 
+          {/* Hotels (Active Red Indicator - Screenshot 1) */}
           <button
-            onClick={() => onSelectMode('flight')}
-            className={`flex items-center gap-2 px-3.5 py-2 text-sm font-semibold rounded-lg transition-all duration-150 whitespace-nowrap shrink-0 cursor-pointer ${
-              activeMode === 'flight'
-                ? 'bg-[#d84e55] text-white shadow-sm'
-                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+            onClick={() => onSelectMode('hotel')}
+            className={`flex flex-col items-center justify-center h-full px-4 text-xs font-bold transition-all duration-150 cursor-pointer border-b-3 relative ${
+              activeMode === 'hotel'
+                ? 'border-[#d84e55] text-[#d84e55]'
+                : 'border-transparent text-slate-600 hover:text-slate-900'
             }`}
           >
-            <Plane className="w-4 h-4" />
+            <Bed className="w-5 h-5 mb-1" />
+            <span>Hotels</span>
+            {activeMode === 'hotel' && (
+              <span className="absolute -top-1 right-2 w-2 h-2 rounded-full bg-[#d84e55] animate-ping" />
+            )}
+          </button>
+
+          {/* Flights */}
+          <button
+            onClick={() => onSelectMode('flight')}
+            className={`flex flex-col items-center justify-center h-full px-3 text-xs font-bold transition-all duration-150 cursor-pointer border-b-3 ${
+              activeMode === 'flight'
+                ? 'border-[#d84e55] text-[#d84e55]'
+                : 'border-transparent text-slate-600 hover:text-slate-900'
+            }`}
+          >
+            <Plane className="w-5 h-5 mb-1" />
             <span>Flights</span>
           </button>
 
-          <button
-            onClick={() => onSelectMode('hotel')}
-            className={`flex items-center gap-2 px-3.5 py-2 text-sm font-semibold rounded-lg transition-all duration-150 whitespace-nowrap shrink-0 cursor-pointer ${
-              activeMode === 'hotel'
-                ? 'bg-[#d84e55] text-white shadow-sm'
-                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
-            }`}
-          >
-            <Building2 className="w-4 h-4" />
-            <span>redStays (Hotels)</span>
-          </button>
-
+          {/* Live GPS Tracking */}
           <button
             onClick={() => onSelectMode('tracking')}
-            className={`flex items-center gap-2 px-3.5 py-2 text-sm font-semibold rounded-lg transition-all duration-150 whitespace-nowrap shrink-0 cursor-pointer ${
+            className={`flex flex-col items-center justify-center h-full px-3 text-xs font-bold transition-all duration-150 cursor-pointer border-b-3 ${
               activeMode === 'tracking'
-                ? 'bg-[#d84e55] text-white shadow-sm'
-                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                ? 'border-[#d84e55] text-[#d84e55]'
+                : 'border-transparent text-slate-600 hover:text-slate-900'
             }`}
           >
-            <Navigation className="w-4 h-4 text-emerald-500 animate-pulse" />
-            <span>Live GPS Tracking</span>
+            <Navigation className="w-5 h-5 mb-1 text-emerald-500 animate-pulse" />
+            <span>Live GPS</span>
           </button>
+
         </nav>
 
-        {/* Zone 3: Primary Action & User Utilities */}
-        <div className="flex items-center gap-3 shrink-0">
+        {/* Zone 3: Wishlist, Account & Help (Screenshot 1 Right Area) */}
+        <div className="flex items-center gap-2 sm:gap-4 shrink-0">
+          
+          {/* Wishlist Button (Screenshot 1) */}
           <button
-            onClick={onOpenHelp}
-            className="hidden sm:flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
+            onClick={onOpenWishlist || onOpenMyBookings}
+            className="flex items-center gap-1.5 px-3 py-2 text-xs font-bold text-slate-700 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-colors cursor-pointer relative"
           >
-            <LifeBuoy className="w-4 h-4 text-slate-500" />
-            <span>24x7 Help</span>
+            <Heart className={`w-4 h-4 ${wishlistCount > 0 ? 'fill-rose-500 text-rose-500' : 'text-slate-600'}`} />
+            <span className="hidden sm:inline">Wishlist</span>
+            {wishlistCount > 0 && (
+              <span className="w-4 h-4 rounded-full bg-[#d84e55] text-white text-[10px] font-black flex items-center justify-center">
+                {wishlistCount}
+              </span>
+            )}
           </button>
 
+          {/* 24x7 Help */}
+          <button
+            onClick={onOpenHelp}
+            className="hidden lg:flex items-center gap-1.5 px-3 py-2 text-xs font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-colors cursor-pointer"
+          >
+            <LifeBuoy className="w-4 h-4 text-slate-500" />
+            <span>Help</span>
+          </button>
+
+          {/* Account / My Bookings (Screenshot 1: "Account") */}
           <button
             onClick={onOpenMyBookings}
-            className="flex items-center gap-2 px-4 py-2 text-xs font-semibold text-white bg-slate-900 hover:bg-slate-800 rounded-lg shadow-sm transition-all duration-150 cursor-pointer whitespace-nowrap"
+            className="flex items-center gap-2 px-4 py-2 text-xs font-bold text-white bg-slate-900 hover:bg-slate-800 rounded-xl shadow-xs transition-all duration-150 cursor-pointer whitespace-nowrap"
           >
-            <Ticket className="w-4 h-4 text-emerald-400" />
-            <span>My Bookings</span>
+            <User className="w-4 h-4 text-slate-300" />
+            <span className="hidden sm:inline">Account</span>
+            <span className="sm:hidden">Bookings</span>
             {bookingCount > 0 && (
-              <span className="w-5 h-5 flex items-center justify-center bg-[#d84e55] text-white text-[11px] font-bold rounded-full">
+              <span className="w-5 h-5 flex items-center justify-center bg-[#d84e55] text-white text-[11px] font-black rounded-full">
                 {bookingCount}
               </span>
             )}
           </button>
         </div>
+
       </div>
 
       {/* Mobile Sub-Navigation Bar */}
@@ -137,7 +171,7 @@ export const Header: React.FC<HeaderProps> = ({
           }`}
         >
           <Bus className="w-4 h-4" />
-          <span>Bus</span>
+          <span>Buses</span>
         </button>
         <button
           onClick={() => onSelectMode('train')}
@@ -149,6 +183,15 @@ export const Header: React.FC<HeaderProps> = ({
           <span>Trains</span>
         </button>
         <button
+          onClick={() => onSelectMode('hotel')}
+          className={`flex flex-col items-center gap-1 px-3 py-1 text-xs font-medium rounded-md whitespace-nowrap ${
+            activeMode === 'hotel' ? 'text-[#d84e55] font-bold' : 'text-slate-600'
+          }`}
+        >
+          <Bed className="w-4 h-4" />
+          <span>Hotels</span>
+        </button>
+        <button
           onClick={() => onSelectMode('flight')}
           className={`flex flex-col items-center gap-1 px-3 py-1 text-xs font-medium rounded-md whitespace-nowrap ${
             activeMode === 'flight' ? 'text-[#d84e55] font-bold' : 'text-slate-600'
@@ -156,15 +199,6 @@ export const Header: React.FC<HeaderProps> = ({
         >
           <Plane className="w-4 h-4" />
           <span>Flights</span>
-        </button>
-        <button
-          onClick={() => onSelectMode('hotel')}
-          className={`flex flex-col items-center gap-1 px-3 py-1 text-xs font-medium rounded-md whitespace-nowrap ${
-            activeMode === 'hotel' ? 'text-[#d84e55] font-bold' : 'text-slate-600'
-          }`}
-        >
-          <Building2 className="w-4 h-4" />
-          <span>Hotels</span>
         </button>
         <button
           onClick={() => onSelectMode('tracking')}

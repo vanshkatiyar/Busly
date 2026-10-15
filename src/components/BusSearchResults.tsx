@@ -44,7 +44,7 @@ export const BusSearchResults: React.FC<BusSearchResultsProps> = ({
   const [sortBy, setSortBy] = useState<'price_asc' | 'rating_desc' | 'duration_asc' | 'departure_asc'>('price_asc');
 
   // Filter and sort logic
-  const filteredBuses = useMemo(() => {
+  const filteBuslyes = useMemo(() => {
     return buses
       .filter((bus) => {
         if (filterPrimo && bus.category !== 'primo') return false;
@@ -77,7 +77,7 @@ export const BusSearchResults: React.FC<BusSearchResultsProps> = ({
               {fromCity} ➔ {toCity}
             </h2>
             <span className="text-xs px-2.5 py-1 rounded-full bg-red-50 text-[#d84e55] font-bold">
-              {filteredBuses.length} Buses Found
+              {filteBuslyes.length} Buses Found
             </span>
           </div>
           <p className="text-xs text-slate-500 mt-1">
@@ -213,11 +213,11 @@ export const BusSearchResults: React.FC<BusSearchResultsProps> = ({
             </div>
           </div>
 
-          {/* redBus Safety Banner */}
+          {/* Busly Safety Banner */}
           <div className="bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-200 rounded-2xl p-4 text-xs text-emerald-900">
             <div className="flex items-center gap-2 font-bold mb-1">
               <ShieldCheck className="w-4 h-4 text-emerald-600" />
-              <span>redBus Safety+ Standard</span>
+              <span>Busly Safety+ Standard</span>
             </div>
             <p className="text-emerald-700 leading-relaxed">
               All listed operators follow mandatory thermal checks, sanitized interiors, and live GPS route sharing.
@@ -227,13 +227,13 @@ export const BusSearchResults: React.FC<BusSearchResultsProps> = ({
 
         {/* Bus List */}
         <div className="lg:col-span-3 space-y-4">
-          {filteredBuses.length === 0 ? (
+          {filteBuslyes.length === 0 ? (
             <div className="bg-white rounded-2xl p-12 text-center border border-slate-200">
               <p className="text-base font-bold text-slate-800">No buses matching your selected filters.</p>
               <p className="text-xs text-slate-500 mt-1">Try widening your price range or clearing filters.</p>
             </div>
           ) : (
-            filteredBuses.map((bus) => (
+            filteBuslyes.map((bus) => (
               <div
                 key={bus.id}
                 className="bg-white rounded-2xl p-5 border border-slate-200 hover:border-slate-300 hover:shadow-md transition-all duration-200"

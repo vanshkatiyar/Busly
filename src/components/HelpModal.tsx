@@ -7,16 +7,16 @@ interface HelpModalProps {
 
 const FAQS = [
   {
-    q: 'How does Real-Time Live Bus Tracking work on redBus?',
+    q: 'How does Real-Time Live Bus Tracking work on Busly?',
     a: 'Every Primo and GPS-enabled bus has an onboard satellite telematics unit that transmits live coordinates, vehicle speed, and estimated arrival times (ETA). You can view the live bus movement on the interactive highway map or click "Live Track" on any booking pass.',
   },
   {
     q: 'Is the Payment Gateway demo 100% secure?',
-    a: 'Yes! All transactions feature 256-bit SSL encryption. We simulate authentic Indian payment options including UPI (QR code scan & VPA), Credit/Debit Cards with 3D Secure OTP verification, NetBanking across major Indian banks, and redBus Wallet cash.',
+    a: 'Yes! All transactions feature 256-bit SSL encryption. We simulate authentic Indian payment options including UPI (QR code scan & VPA), Credit/Debit Cards with 3D Secure OTP verification, NetBanking across major Indian banks, and Busly Wallet cash.',
   },
   {
     q: 'How do I cancel a ticket and receive a refund?',
-    a: 'Open "My Bookings" from the top navigation bar, locate your confirmed journey, and tap the trash/cancel icon. Refunds are calculated according to the operator cancellation window and credited back instantly to your original payment method or redBus Wallet.',
+    a: 'Open "My Bookings" from the top navigation bar, locate your confirmed journey, and tap the trash/cancel icon. Refunds are calculated according to the operator cancellation window and credited back instantly to your original payment method or Busly Wallet.',
   },
   {
     q: 'Can I choose my preferred boarding and dropping points?',
@@ -24,7 +24,7 @@ const FAQS = [
   },
   {
     q: 'Are Train tickets IRCTC authorized?',
-    a: 'Yes, redRail by redBus is an official IRCTC partner. You can search trains, check confirmation probabilities, and query any 10-digit PNR status in real time.',
+    a: 'Yes, redRail by Busly is an official IRCTC partner. You can search trains, check confirmation probabilities, and query any 10-digit PNR status in real time.',
   },
 ];
 
@@ -41,7 +41,7 @@ export const HelpModal: React.FC<HelpModalProps> = ({ onClose }) => {
               <LifeBuoy className="w-4 h-4" />
             </div>
             <div>
-              <h2 className="text-base font-extrabold text-slate-900">redBus 24x7 Customer Care</h2>
+              <h2 className="text-base font-extrabold text-slate-900">Busly 24x7 Customer Care</h2>
               <p className="text-xs text-slate-500">Fast assistance for bookings, refunds & tracking</p>
             </div>
           </div>
@@ -66,12 +66,12 @@ export const HelpModal: React.FC<HelpModalProps> = ({ onClose }) => {
               </div>
               <div>
                 <span className="text-[10px] text-slate-500 font-bold uppercase block">Toll-Free Helpline</span>
-                <span className="text-xs font-black text-slate-900">1800-REDBUS</span>
+                <span className="text-xs font-black text-slate-900">1800-Busly</span>
               </div>
             </a>
 
             <a
-              href="mailto:support@redbus.in"
+              href="mailto:support@Busly.in"
               className="p-3 bg-slate-50 hover:bg-slate-100 text-slate-900 rounded-2xl border border-slate-200 transition-colors flex items-center gap-3 cursor-pointer"
             >
               <div className="w-9 h-9 rounded-xl bg-slate-900 text-white flex items-center justify-center shrink-0">
@@ -79,7 +79,7 @@ export const HelpModal: React.FC<HelpModalProps> = ({ onClose }) => {
               </div>
               <div>
                 <span className="text-[10px] text-slate-500 font-bold uppercase block">Email Support</span>
-                <span className="text-xs font-black text-slate-900">support@redbus.in</span>
+                <span className="text-xs font-black text-slate-900">support@Busly.in</span>
               </div>
             </a>
           </div>
